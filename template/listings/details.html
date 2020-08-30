@@ -1,0 +1,351 @@
+{% extends 'base.html' %} {% load static %} {% block title %} {% endblock %} {% block content %}
+
+<!-- begin:header -->
+<div id="header" class="heading" style="background-image: url(img/img01.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-12">
+                <div class="quick-search">
+                    <div class="row">
+                        <form role="form" method="GET" action="{% url 'search' %}">
+                            <!-- {% csrf_token %} -->
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="form-group">
+                                    <label for="bedroom">کلمه کلیدی</label>
+                                    <input type="text" class="form-control" placeholder="کلمه کلیدی">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bedroom">اتاق خواب</label>
+                                    <select name='bedroom' class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- break -->
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="form-group">
+                                    <label for="status">وضعیت</label>
+                                    <select class="form-control">
+                          <option>حراج</option>
+                          <option>برای اجاره</option>
+                        </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bathroom">حمام</label>
+                                    <select class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                        </select>
+                                </div>
+                            </div>
+                            <!-- break -->
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="form-group">
+                                    <label for="type">نوع</label>
+                                    <select class="form-control">
+                          <option>ویلا</option>
+                          <option>ساکن</option>
+                          <option>تجاری</option>
+                        </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="minprice">هزینه حداقل</label>
+                                    <select class="form-control">
+                          <option>$4,200</option>
+                          <option>$6,700</option>
+                          <option>$8,150</option>
+                          <option>$11,110</option>
+                        </select>
+                                </div>
+                            </div>
+                            <!-- break -->
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="form-group">
+                                    <label for="maxprice">حداکثر قیمت</label>
+                                    <select class="form-control">
+                          <option>$8,200</option>
+                          <option>$11,700</option>
+                          <option>$14,150</option>
+                          <option>$21,110</option>
+                        </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="maxprice">&nbsp;</label>
+                                    <input type="submit" name="submit" value="Search Again" class="btn btn-primary btn-block">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:header -->
+
+<!-- begin:content -->
+<div id="content">
+    <div class="container">
+        <div class="row">
+            {% if listing %}
+            <!-- begin:article -->
+            <div class="col-md-9 col-md-push-3">
+                <div class="row">
+                    <div class="col-md-12 single-post">
+                        <ul id="myTab" class="nav nav-tabs nav-justified">
+                            <li class="active"><a href="#detail" data-toggle="tab"><i class="fa fa-university"></i> مشخصات ملک</a></li>
+                            <li><a href="#location" data-toggle="tab"><i class="fa fa-paper-plane-o"></i>محل</a></li>
+                        </ul>
+
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade in active" id="detail">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2>
+                                            {{listing.title}}
+                                        </h2>
+                                        <div id="slider-property" class="carousel slide" data-ride="carousel">
+                                            <ol class="carousel-indicators">
+                                                <li data-target="#slider-property" data-slide-to="0" class="">
+                                                    <img src="{{ listing.photo_main.url }}" alt="">
+                                                </li>
+                                                <li data-target="#slider-property" data-slide-to="1" class="active">
+                                                    <img src="{{ listing.photo_1.url }}" alt="">
+                                                </li>
+                                                <li data-target="#slider-property" data-slide-to="2">
+                                                    <img src="{{ listing.photo_2.url }}" alt="">
+                                                </li>
+                                            </ol>
+                                            <div class="carousel-inner">
+                                                <div class="item">
+                                                    <img src="{{ listing.photo_main.url }}" alt="">
+                                                </div>
+                                                <div class="item active">
+                                                    <img src="{{ listing.photo_1.url }}" alt="">
+                                                </div>
+                                                <div class="item">
+                                                    <img src="{{ listing.photo_2.url }}" alt="">
+                                                </div>
+                                            </div>
+                                            <a class="right carousel-control" href="#slider-property" data-slide="prev">
+                                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                            </a>
+                                            <a class="left carousel-control" href="#slider-property" data-slide="next">
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                            </a>
+                                        </div>
+                                        <h3>بررسی اجمالی املاک</h3>
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <td width="20%"><strong>ID</strong></td>
+                                                <td>#{{ listing.id }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>قیمت</strong></td>
+                                                <td>{{ listing.price }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>نوع</strong></td>
+                                                <td>Residential</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>قرارداد</strong></td>
+                                                <td>فروش</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>محل</strong></td>
+                                                <td>{{ listing.address}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>حمام و سرویس بهداشتی</strong></td>
+                                                <td>{{ listing.bathroom }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>اتاق های خواب</strong></td>
+                                                <td>{{ listing.bedroom }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>زیربنا</strong></td>
+                                                <td>{{ listing.infr }}m<sup>2</sup> </td>
+                                            </tr>
+                                        </table>
+                                        <h3>ویژگی های املاک
+                                            <h3>
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <ul>
+                                                            <li><i class="fa fa-check"></i> Air conditioning</li>
+                                                            <li><i class="fa fa-check"></i> Balcony</li>
+                                                            <li><i class="fa fa-times"></i> Bedding</li>
+                                                            <li><i class="fa fa-check"></i> Cable TV</li>
+                                                            <li><i class="fa fa-times"></i> Cleaning after exit</li>
+                                                            <li><i class="fa fa-check"></i> Cofee pot</li>
+                                                            <li><i class="fa fa-check"></i> Computer</li>
+                                                            <li><i class="fa fa-times"></i> Cot</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <ul>
+                                                            <li><i class="fa fa-check"></i> Internet</li>
+                                                            <li><i class="fa fa-times"></i> Iron</li>
+                                                            <li><i class="fa fa-check"></i> Juicer</li>
+                                                            <li><i class="fa fa-times"></i> Lift</li>
+                                                            <li><i class="fa fa-times"></i> Microwave</li>
+                                                            <li><i class="fa fa-check"></i> Oven</li>
+                                                            <li><i class="fa fa-times"></i> Parking</li>
+                                                            <li><i class="fa fa-times"></i> Parquet</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <ul>
+                                                            <li><i class="fa fa-times"></i> Radio</li>
+                                                            <li><i class="fa fa-check"></i> Roof terrace</li>
+                                                            <li><i class="fa fa-times"></i> Smoking allowed</li>
+                                                            <li><i class="fa fa-check"></i> Terrace</li>
+                                                            <li><i class="fa fa-times"></i> Toaster</li>
+                                                            <li><i class="fa fa-check"></i> Towelwes</li>
+                                                            <li><i class="fa fa-check"></i> Use of pool</li>
+                                                            <li><i class="fa fa-check"></i> Video</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <h3>توضیحات ملک</h3>
+                                                <p>{{ listing.details }}</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <!-- break -->
+                            <div class="tab-pane fade" id="location">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="map-property"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>تماس با ما </h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="team-container team-dark">
+                                            <div class="team-image">
+                                                <img src="img/team01.jpg" alt="the team - mikha realestate theme">
+                                            </div>
+                                            <div class="team-description">
+                                                <h3>Katty Sharon</h3>
+                                                <p><i class="fa fa-phone"></i> Office : 021-234-5678<br>
+                                                    <i class="fa fa-mobile"></i> Mobile : +62-3456-78910<br>
+                                                    <i class="fa fa-print"></i> Fax : 021-234-5679</p>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                <div class="team-social">
+                                                    <span><a href="#" title="Twitter" rel="tooltip" data-placement="top"><i class="fa fa-twitter"></i></a></span>
+                                                    <span><a href="#" title="Facebook" rel="tooltip" data-placement="top"><i class="fa fa-facebook"></i></a></span>
+                                                    <span><a href="#" title="Google Plus" rel="tooltip" data-placement="top"><i class="fa fa-google-plus"></i></a></span>
+                                                    <span><a href="#" title="Email" rel="tooltip" data-placement="top"><i class="fa fa-envelope"></i></a></span>
+                                                    <span><a href="#" title="LinkedIn" rel="tooltip" data-placement="top"><i class="fa fa-linkedin"></i></a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="name">نام</label>
+                                                <input type="text" class="form-control input-lg" placeholder="نام : ">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">ایمیل</label>
+                                                <input type="email" class="form-control input-lg" placeholder="ایمیل : ">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="telp">تلفن.</label>
+                                                <input type="text" class="form-control input-lg" placeholder="تلفن : ">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="message">پیام</label>
+                                                <textarea class="form-control input-lg" rows="7" placeholder="پیام : "></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" name="submit" value="Send Message" class="btn btn-primary btn-lg">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end:article -->
+
+            <!-- begin:sidebar -->
+            <div class="col-md-3 col-md-pull-9 sidebar">
+                <div class="widget-white favorite">
+                    <a href="javascript:{document.getElementById('send_data').submit()}"><i class="fa fa-heart"></i>ثبت درخواست</a>
+                    <form action="{% url 'order' %}" method="POST" id="send_data">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ listing.id }}" name="listing_id">
+                        <input type="hidden" value="{{listing.title}}" name="listing_name">
+                    </form>
+                </div>
+                {% endif %}
+                <!-- break -->
+                <div class="widget widget-sidebar widget-white">
+                    <div class="widget-header">
+                        <h3>آخرین املاک</h3>
+                    </div>
+                    <ul>
+                        <li><a href="#">ویلا های لوکس</a></li>
+                        <li><a href="#">زمین در پارک مرکزی</a></li>
+                        <li><a href="#">زندگی شهری</a></li>
+                        <li><a href="#">دفتر لوکس</a></li>
+                        <li><a href="">ویلا های لوکس در رگو پارک</a></li>
+                    </ul>
+                </div>
+                <!-- break -->
+                <div class="widget widget-sidebar widget-white">
+                    <div class="widget-header">
+                        <h3>نوع ملک</h3>
+                    </div>
+                    <ul class="list-check">
+                        <li><a href="#">دفتر</a>&nbsp;(18)</li>
+                        <li><a href="#">دفتر</a>&nbsp;(43)</li>
+                        <li><a href="#">فروشگاه</a>&nbsp;(31)</li>
+                        <li><a href="#">ویلا</a>&nbsp;(52)</li>
+                        <li><a href="#">اپارتمان</a>&nbsp;(8)</li>
+                        <li><a href="#">خانه های تک خانوار</a>&nbsp;(11)</li>
+                    </ul>
+                </div>
+                <!-- break -->
+                <div class="widget widget-sidebar widget-white">
+                    <div class="widget-header">
+                        <h3>عوامل بالا</h3>
+                    </div>
+                    <ul>
+                        <li><a href="#">ایمان مدائنی</a></li>
+                        <li><a href="#">سجاد باقرزاده</a></li>
+                        <li><a href="#">ایمان مدائنی</a></li>
+                        <li><a href="#">سجاد باقرزاده</a></li>
+                    </ul>
+                </div>
+                <!-- break -->
+            </div>
+            <!-- end:sidebar -->
+
+        </div>
+    </div>
+</div>
+<!-- end:content -->
+
+{% endblock %}

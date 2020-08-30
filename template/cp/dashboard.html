@@ -1,0 +1,62 @@
+{% extends 'base.html' %} {% load static %} {% block title %} {% endblock %}{% block content %}
+
+<style>
+    .dashbord-body {
+        direction: rtl;
+        padding: 20px;
+    }
+    
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: right;
+        ;
+        padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #bfdfff;
+    }
+</style>
+
+{% if user.is_authenticated %}
+<div class="container dashbord-body">
+    <h1>
+        {{ user.username }} عزیز به داشبورد خوش آمدید
+    </h1>
+    {% endif %}
+    <a href="javascript:{document.getElementById('logout').submit()}">خروج از حساب کاربری</a>
+
+    <form action="{% url 'logout' %}" method="POST" id="logout">
+        {% csrf_token %}
+        <input type="hidden">
+    </form>
+
+    <h2>جدول درخواست ها:</h2>
+    {% if orders %}
+    <table>
+        <tr>
+            <th>نام سفارش</th>
+            <th>تاریخ</th>
+            <th>وضعیت درخواست</th>
+        </tr>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.listing_name }}</td>
+            <td>{{ order.contact_date }}</td>
+            {% if order.checking == True %}
+            <td>دیده شد</td>
+            {% else %}
+            <td>دیده نشد</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %} {% endblock %}

@@ -1,0 +1,227 @@
+{% extends 'base.html' %} {% load static %} {% block title %} {% endblock %} {% block content %}
+<!-- begin:header -->
+<div id="header" class="heading" style="background-image: url(img/img01.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-12">
+                <div class="page-title">
+                    <h2>طبقه بندی : <span>ویلا</span></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:header -->
+
+<!-- begin:content -->
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <!-- begin:article -->
+            <div class="col-md-9 col-md-push-3">
+                <!-- begin:sorting -->
+                <div class="row sort">
+                    <div class="col-md-4 col-sm-4 col-xs-3">
+                        <a href="category.html" class="btn btn-default"><i class="fa fa-th"></i></a>
+                        <a href="category_list.html" class="btn btn-primary"><i class="fa fa-list"></i></a>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-9">
+                        <form class="form-inline" role="form">
+                            <span>مرتب سازی : </span>
+                            <div class="form-group">
+                                <label class="sr-only" for="sortby">مرتب سازی : </label>
+                                <select class="form-control">
+                      <option>جدیدترین ها</option>
+                      <option>قیمت (کم و؛ بالا)</option>
+                      <option>قیمت (بالا ؛ کم)</option>
+                      <option>محبوب ترین ها (پایین؛ بالا)</option>
+                    </select>
+                            </div>
+                            <span>نمایش : </span>
+                            <div class="form-group">
+                                <label class="sr-only" for="show">نمایش : </label>
+                                <label class="sr-only" for="show">نمایش : </label>
+                                <label class="sr-only" for="show">نمایش : </label>
+                                <select class="form-control">
+                      <option>6</option>
+                      <option>10</option>
+                      <option>15</option>
+                      <option>20</option>
+                      <option>25</option>
+                      <option>50</option>
+                      <option>100</option>
+                    </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- end:sorting -->
+
+                <!-- begin:product -->
+                <div class="row container-realestate">
+
+
+                    {% if listings %}{% for listing in listings%}
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="property-container">
+                            <div class="property-content-list">
+                                <div class="property-image-list">
+                                    <img src="{{ listing.photo_main.url }}" alt="{{ listing.title }}">
+                                    <div class="property-price">
+                                        <h4>دفاتر</h4>
+                                        <span>{{listing.price}} تومان<small>/قیمت</small></span>
+                                    </div>
+                                    <div class="property-status">
+                                        <span>برای فروش</span>
+                                    </div>
+                                    <div class="property-features">
+                                        <span><i class="fa fa-home"></i>{{ listing.infr }} m<sup>2</sup></span>
+                                        <span><i class="fa fa-hdd-o"></i> {{ listing.bedroom }} Bed</span>
+                                        <span><i class="fa fa-male"></i> {{ listing.bathroom }} Bath</span>
+                                        <span><i class="fa fa-building-o"></i> 2 Floors</span>
+                                        <span><i class="fa fa-car"></i> 2 Garages</span>
+                                    </div>
+                                </div>
+                                <div class="property-text">
+                                    <h3><a href="#">{{ listing.title }}</a></h3>
+                                    <p>{{ listing.details }}</p>
+                                    <p><a href="{% url 'details' listing.id %}" class="btn btn-primary">بیشتر</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- break -->
+                    {% endfor %} {% else %}
+                    <h1>ملکی موجود نیست</h1>
+                    {% endif %}
+                </div>
+                <!-- end:product -->
+
+                <!-- begin:pagination -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="pagination">
+                            <li class="disabled"><a href="#">&laquo;</a></li>
+                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- end:pagination -->
+            </div>
+            <!-- end:article -->
+
+            <!-- begin:sidebar -->
+            <div class="col-md-3 col-md-pull-9 sidebar">
+                <div class="widget widget-white">
+                    <div class="widget-header">
+                        <h3>جستجوی پیشرفته</h3>
+                    </div>
+                    <form role="form" class="advance-search">
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-primary">
+                    <input type="radio" name="options" id="option1"> برای اجاره
+                  </label>
+                            <label class="btn btn-primary">
+                    <input type="radio" name="options" id="option2"> برای فروش
+                  </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <select class="form-control">
+                    <option>میامی</option>
+                    <option>دورال</option>
+                    <option>هاوانای کوچک</option>
+                    <option>هنگ کنگ</option>
+                  </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="type">نوع ملک</label>
+                            <select class="form-control">
+                    <option>دفتر</option>
+                    <option>فروشگاه</option>
+                    <option>ویلا</option>
+                    <option>اپارتمان</option>
+                    <option>خانه های تک خانوار</option>
+                  </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="beds">تخت</label>
+                            <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="baths">حمام ها</label>
+                            <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="min-price">حداقل هزینه </label>
+                            <select class="form-control">
+                    <option>$1,000</option>
+                    <option>$5,000</option>
+                    <option>$10,000</option>
+                    <option>$20,000</option>
+                    <option>$50,000</option>
+                    <option>$350,000</option>
+                  </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="max-price">حداکثر قیمت</label>
+                            <select class="form-control">
+                    <option>$9,000</option>
+                    <option>$19,000</option>
+                    <option>$40,000</option>
+                    <option>$100,000</option>
+                    <option>$800,000</option>
+                  </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="min-area">حداقل مساحت</label>
+                            <input type="text" class="form-control" placeholder="Min Area">
+                        </div>
+                        <div class="form-group">
+                            <label for="max-area">حداکثر مسا حت</label>
+                            <input type="text" class="form-control" placeholder="Max Area">
+                        </div>
+                        <input type="submit" name="submit" value="Search" class="btn btn-primary btn-block">
+                    </form>
+                </div>
+                <!-- break -->
+                <div class="widget widget-sidebar widget-white">
+                    <div class="widget-header">
+                        <h3>نوع ملک</h3>
+                    </div>
+                    <ul class="list-check">
+                        <li><a href="#">دفتر</a>&nbsp;(18)</li>
+                        <li><a href="#">دفتر</a>&nbsp;(43)</li>
+                        <li><a href="#">فروشگاه</a>&nbsp;(31)</li>
+                        <li><a href="#">ویلا</a>&nbsp;(52)</li>
+                        <li><a href="#">اپارتمان</a>&nbsp;(8)</li>
+                        <li><a href="#">خانه های تک واحدی</a>&nbsp;(11)</li>
+                    </ul>
+                </div>
+                <!-- break -->
+            </div>
+            <!-- end:sidebar -->
+
+        </div>
+    </div>
+</div>
+<!-- end:content -->
+{% endblock %}

@@ -1,0 +1,49 @@
+{% load static %}
+
+<!-- begin:navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-top">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+            <a class="navbar-brand" href="{% url 'index' %}"><span>Ari<strong>llo.</strong></span></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-top">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="active"><a href="{% url 'index' %}">صفحه اصلی</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">ویژگی <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'listings' %}">دسته بندی</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">صفحه <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% static 'main/blog.html' %}">آرشیو وبلاگ</a></li>
+                        <li><a href="{% static 'main/blog_single.html' %}">وبلاک تک صفحه ای</a></li>
+                        <li><a href="{% url 'about' %}">درباره ما</a></li>
+                        <li><a href="{% static 'main/contact.html' %}">تماس با ما</a></li>
+                    </ul>
+                </li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'dashboard' %}" class="signin">{{ user.username }}</a></li>
+                {% else %}
+                <li><a href="#modal-signin" class="signin" data-toggle="modal" data-target="#modal-signin">ورود به سایت</a></li>
+                <li><a href="#" class="signup" data-toggle="modal" data-target="#modal-signup">ثبت نام</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- end:navbar -->
+<!-- begin:header -->
