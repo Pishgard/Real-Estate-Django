@@ -17,7 +17,7 @@ If you are new to Django, checkout the Django 3.x Cheat Sheet
 git clone https://github.com/Ali-Pi/Real-Estat-Django-Persian.git
 ```
 
-2. **Make sure you are in Real-Estat-Django-Persian folder**
+2. **Make sure you are in Real-Estate-Django-Persian folder**
 
 3. Install all dependencies
 ```
