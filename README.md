@@ -3,9 +3,9 @@ A real estate listings website built with python django bootstrap.
 
 A simple, reponsive website. Built with:
 
-- Python 🐍
-- Django 🎸
-- Bootstrap 4 🌈
+- Python
+- Django
+- Bootstrap 4
 - JQuery
 
 If you are new to Django, checkout the Django 3.x Cheat Sheet
