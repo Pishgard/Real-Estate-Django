@@ -77,7 +77,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'melk.wsgi.application'
 
-
+# Database
 try:
     from .database_settings import *
 except ImportError:
