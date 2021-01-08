@@ -1,4 +1,4 @@
-# Real-Estat-Django-Persian
+# Real-Estat-Django
 A real estate listings website built with python django bootstrap.
 
 A simple, reponsive website. Built with:
