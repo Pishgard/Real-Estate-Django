@@ -1,5 +1,0 @@
-# npou1978qhxqz1gwwesi8j
-# 2fd67hs76auabxq1bfhc1u5p5yungefymy5cxm6m
-# n7turps7f1a
-# gi5rvlpsnd6g55ujsorzwelgrb
-# bzicxncqm4ujp6qsrnzcyxekafwo2396rodxdgr

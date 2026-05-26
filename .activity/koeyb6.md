@@ -1,3 +1,0 @@
-# gkfl3plnjb4
-# 3nzflsoi5zq5jbpew10q0ttysutgf1bwqjs5fzio
-# zawupwth82xs3300sal3h1wz29fdy6b5p2

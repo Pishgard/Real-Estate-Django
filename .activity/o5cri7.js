@@ -1,3 +1,0 @@
-# hftphoyxaylgemg3pkse2qko3mu6kackz
-# w1iuimaz03900rjsu3qs4qed7xjjbwvfd0lz6
-# ul8sfrslayh25k2w80qbp9g8id3diqrdiq
